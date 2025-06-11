@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}Podcast Details{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="background-color: #f4f7fc; padding: 20px; border-radius: 12px;">
+    <h2 class="text-center mb-4" style="color: #333; font-weight: bold;">Podcast Details</h2>
+
+    <!-- Upcoming Events Section -->
+    <h3 class="mb-4" style="color: #2980b9; font-weight: bold;">Upcoming Podcasts</h3>
+    <div class="row">
+        {% for podcast in events.upcoming %}
+            <div class="col-md-4 mb-4">
+                <div class="card" 
+                     style="border: none; border-radius: 12px; overflow: hidden; 
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+                            transition: transform 0.3s ease-in-out; height: 100%; display: flex; flex-direction: column;">
+                    
+                    <!-- Left Side: Text Content -->
+                    <div class="card-body" 
+                         style="padding: 20px; background-color: #ffffff; color: #333;">
+                        <h5 class="card-title" style="font-size: 1.5rem; font-weight: bold;">
+                            {{ podcast.event.title }}
+                        </h5>
+                        <p class="card-text" style="font-size: 1rem; color: #6c757d;">
+                            {{ podcast.event.date }} | Time: {{ podcast.event.start_time }} - {{ podcast.event.end_time }}
+                        </p>
+                        <p class="card-text" style="font-size: 1rem; color: #333;">
+                            {{ podcast.event.description }}
+                        </p>
+                        <p class="card-text" style="font-size: 1rem; color: #6c757d;">
+                            Venue: {{ podcast.event.venue }}
+                        </p>
+                        <p class="card-text" style="font-size: 1rem; color: #333;">
+                            Trainer: {{ podcast.trainer }}
+                        </p>
+                        <p class="card-text" style="font-size: 1rem; color: #6c757d;">
+                            Topic: {{ podcast.topic }}
+                        </p>
+                        <p class="card-text" style="font-size: 1rem; color: #333;">
+                            Duration: {{ podcast.duration }}
+                        </p>
+                    </div>
+
+                    <!-- Right Side: Image -->
+                    <div style="background-color: #f8f9fa; padding: 20px; display: flex; justify-content: center; align-items: center; flex: 1;">
+                        {% if podcast.event.image %}
+                            <img src="{{ podcast.event.image.url }}" 
+                                 alt="{{ podcast.event.title }}" 
+                                 style="max-height: 200px; max-width: 100%; border-radius: 8px; 
+                                        transition: transform 0.3s ease, filter 0.3s ease; 
+                                        filter: brightness(90%);">
+                        {% else %}
+                            <img src="/path/to/default/image.jpg" 
+                                 alt="Default Image" 
+                                 style="max-height: 200px; max-width: 100%; border-radius: 8px; 
+                                        transition: transform 0.3s ease, filter 0.3s ease; 
+                                        filter: brightness(90%);">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center text-muted">No upcoming podcasts available.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Previous Events Section -->
+    <h3 class="mb-4" style="color: #2980b9; font-weight: bold;">Previous Podcasts</h3>
+    <div class="row">
+        {% for podcast in events.previous %}
+            <div class="col-md-4 mb-4">
+                <div class="card" 
+                     style="border: none; border-radius: 12px; overflow: hidden; 
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+                            transition: transform 0.3s ease-in-out; height: 100%; display: flex; flex-direction: column;">
+                    
+                    <!-- Left Side: Text Content -->
+                    <div class="card-body" 
+                         style="padding: 20px; background-color: #ffffff; color: #333;">
+                        <h5 class="card-title" style="font-size: 1.5rem; font-weight: bold;">
+                            {{ podcast.event.title }}
+                        </h5>
+                        <p class="card-text" style="font-size: 1rem; color: #6c757d;">
+                            {{ podcast.event.date }} | Time: {{ podcast.event.start_time }} - {{ podcast.event.end_time }}
+                        </p>
+                        <p class="card-text" style="font-size: 1rem; color: #333;">
+                            {{ podcast.event.description }}
+                        </p>
+                        <p class="card-text" style="font-size: 1rem; color: #6c757d;">
+                            Venue: {{ podcast.event.venue }}
+                        </p>
+                        <p class="card-text" style="font-size: 1rem; color: #333;">
+                            Trainer: {{ podcast.trainer }}
+                        </p>
+                        <p class="card-text" style="font-size: 1rem; color: #6c757d;">
+                            Topic: {{ podcast.topic }}
+                        </p>
+                        <p class="card-text" style="font-size: 1rem; color: #333;">
+                            Duration: {{ podcast.duration }}
+                        </p>
+                    </div>
+
+                    <!-- Right Side: Image -->
+                    <div style="background-color: #f8f9fa; padding: 20px; display: flex; justify-content: center; align-items: center; flex: 1;">
+                        {% if podcast.event.image %}
+                            <img src="{{ podcast.event.image.url }}" 
+                                 alt="{{ podcast.event.title }}" 
+                                 style="max-height: 200px; max-width: 100%; border-radius: 8px; 
+                                        transition: transform 0.3s ease, filter 0.3s ease; 
+                                        filter: brightness(90%);">
+                        {% else %}
+                            <img src="/path/to/default/image.jpg" 
+                                 alt="Default Image" 
+                                 style="max-height: 200px; max-width: 100%; border-radius: 8px; 
+                                        transition: transform 0.3s ease, filter 0.3s ease; 
+                                        filter: brightness(90%);">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center text-muted">No previous podcasts available.</p>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

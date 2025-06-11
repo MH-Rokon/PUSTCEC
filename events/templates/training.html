@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Training</h1>
+
+    <h2>Upcoming Trainings</h2>
+    {% if events.upcoming %}
+        <div class="row">
+            {% for training in events.upcoming %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        {% if training.event.image %}
+                            <img src="{{ training.event.image.url }}" class="card-img-top" alt="{{ training.event.title }}">
+                        {% else %}
+                            <img src="/path/to/default/image.jpg" class="card-img-top" alt="{{ training.event.title }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ training.event.title }}</h5>
+                            <p class="card-text">{{ training.event.description }}</p>
+                            <p><strong>Date:</strong> {{ training.event.date }}</p>
+                            <p><strong>Time:</strong> {{ training.event.start_time }} - {{ training.event.end_time }}</p>
+                            <p><strong>Venue:</strong> {{ training.event.venue }}</p>
+                            <p><strong>Trainer:</strong> {{ training.trainer }}</p>
+                            <p><strong>Training Field:</strong> {{ training.training_field }}</p>
+                            <p><strong>Capacity:</strong> {{ training.capacity }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No upcoming trainings.</p>
+    {% endif %}
+
+    <h2>Previous Trainings</h2>
+    {% if events.previous %}
+        <div class="row">
+            {% for training in events.previous %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        {% if training.event.image %}
+                            <img src="{{ training.event.image.url }}" class="card-img-top" alt="{{ training.event.title }}">
+                        {% else %}
+                            <img src="/path/to/default/image.jpg" class="card-img-top" alt="{{ training.event.title }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ training.event.title }}</h5>
+                            <p class="card-text">{{ training.event.description }}</p>
+                            <p><strong>Date:</strong> {{ training.event.date }}</p>
+                            <p><strong>Time:</strong> {{ training.event.start_time }} - {{ training.event.end_time }}</p>
+                            <p><strong>Venue:</strong> {{ training.event.venue }}</p>
+                            <p><strong>Trainer:</strong> {{ training.trainer }}</p>
+                            <p><strong>Training Field:</strong> {{ training.training_field }}</p>
+                            <p><strong>Capacity:</strong> {{ training.capacity }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No previous trainings.</p>
+    {% endif %}
+{% endblock %}

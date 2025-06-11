@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}All Workshops{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="background-color: #f4f7fc; padding: 20px; border-radius: 8px;">
+    <h2 class="text-center mb-4" style="color: #333; font-weight: bold;">Upcoming Workshops</h2>
+    <div class="row">
+        {% for workshop in events.upcoming %}
+            <div class="col-md-4 mb-4">
+                <div class="card" style="height: 100%; border: none; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <div class="card-body" style="background-color: #ffffff; padding: 20px;">
+                        <h5 class="card-title" style="font-size: 1.5rem; font-weight: bold; color: #333;">
+                            {{ workshop.event.title }}
+                        </h5>
+                        
+                        <!-- Display the image -->
+                        {% if workshop.event.image %}
+                            <img src="{{ workshop.event.image.url }}" class="card-img-top" alt="{{ workshop.event.title }}" style="width: 100%; height: auto; border-radius: 8px;">
+                        {% else %}
+                            <img src="/path/to/default-image.jpg" class="card-img-top" alt="No image available" style="width: 100%; height: auto; border-radius: 8px;">
+                        {% endif %}
+
+                        <p class="card-text" style="font-size: 1rem; color: #6c757d;">
+                            {{ workshop.event.date }} | {{ workshop.event.start_time }} - {{ workshop.event.end_time }}
+                        </p>
+                        <p class="card-text" style="font-size: 1.1rem; color: #333;">
+                            Facilitator: {{ workshop.facilitator }}
+                        </p>
+                        <p class="card-text" style="font-size: 1rem; color: #6c757d;">
+                            Duration: {{ workshop.duration }}
+                        </p>
+                        <p class="card-text" style="font-size: 1rem; color: #6c757d;">
+                            Venue: {{ workshop.event.venue }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center text-muted">No upcoming workshops at the moment.</p>
+        {% endfor %}
+    </div>
+
+    <h2 class="text-center mb-4" style="color: #333; font-weight: bold;">Previous Workshops</h2>
+    <div class="row">
+        {% for workshop in events.previous %}
+            <div class="col-md-4 mb-4">
+                <div class="card" style="height: 100%; border: none; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <div class="card-body" style="background-color: #ffffff; padding: 20px;">
+                        <h5 class="card-title" style="font-size: 1.5rem; font-weight: bold; color: #333;">
+                            {{ workshop.event.title }}
+                        </h5>
+
+                        <!-- Display the image -->
+                        {% if workshop.event.image %}
+                            <img src="{{ workshop.event.image.url }}" class="card-img-top" alt="{{ workshop.event.title }}" style="width: 100%; height: auto; border-radius: 8px;">
+                        {% else %}
+                            <img src="/path/to/default-image.jpg" class="card-img-top" alt="No image available" style="width: 100%; height: auto; border-radius: 8px;">
+                        {% endif %}
+
+                        <p class="card-text" style="font-size: 1rem; color: #6c757d;">
+                            {{ workshop.event.date }} | {{ workshop.event.start_time }} - {{ workshop.event.end_time }}
+                        </p>
+                        <p class="card-text" style="font-size: 1.1rem; color: #333;">
+                            Facilitator: {{ workshop.facilitator }}
+                        </p>
+                        <p class="card-text" style="font-size: 1rem; color: #6c757d;">
+                            Duration: {{ workshop.duration }}
+                        </p>
+                        <p class="card-text" style="font-size: 1rem; color: #6c757d;">
+                            Venue: {{ workshop.event.venue }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center text-muted">No previous workshops found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+{% comment %}
+{% block navbar %}
+    {{ block.super }}
+{% endblock %}
+{% endcomment %}
+
+{% block content %}
+    <style>
+        .navbar,
+        .footer {
+            background-color: transparent; /* Remove background color */
+        }
+        body {
+            background-image: url('{% static "pust.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+        }
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(128, 128, 128, 0.5); /* Initial background color */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+        }
+        .contact-container:hover {
+            background-color: rgba(173, 216, 230, 0.5); /* Change background color on hover */
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-card {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            padding: 20px 0;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+        }
+        .contact-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background-color: rgba(211, 211, 211, 0.5); /* Change background color on hover */
+        }
+        .contact-image-container {
+            flex: 0 0 100px;
+            margin-right: 20px;
+            border-radius: 50%;
+        }
+        .contact-image img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        .contact-details {
+            flex: 1;
+        }
+        .contact-details table {
+            width: 100%;
+        }
+        .contact-details table td {
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+            transition: color 0.3s, font-weight 0.3s;
+        }
+        .contact-details table td:first-child {
+            width: 150px;
+        }
+        .contact-details table td strong {
+            display: inline-block;
+            width: 100%;
+            transition: color 0.3s, font-weight 0.3s;
+        }
+        .contact-details table td:hover,
+        .contact-details table td strong:hover {
+            color: #0056b3;
+            font-weight: bold;
+        }
+        .contact-details table td a {
+            color: black;
+            text-decoration: none;
+            transition: color 0.3s, font-weight 0.3s;
+        }
+        .contact-details table td a:hover {
+            color: #0056b3;
+            font-weight: bold;
+        }
+    </style>
+    <div class="background-container d-flex">
+        <div class="contact-container">
+            <h1>Contact List</h1>
+            {% for contact in data %}
+                <div class="contact-card">
+                    <div class="contact-details">
+                        <table>
+                            <tr>
+                                <td><strong>Department Name:</strong></td>
+                                <td>{{ contact.dept_name }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Short Name:</strong></td>
+                                <td>{{ contact.dept_short_name }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Email:</strong></td>
+                                <td><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Phone:</strong></td>
+                                <td><a href="tel:{{ contact.phone }}">{{ contact.phone }}</a></td>
+                            </tr>
+                            {% if contact.contact_time %}
+                                <tr>
+                                    <td><strong>Contact Time:</strong></td>
+                                    <td>{{ contact.contact_time }}</td>
+                                </tr>
+                            {% endif %}
+                        </table>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="contact-image-container" style="border-radius: 50%;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3298.086360923214!2d89.27710627480003!3d24.013283778634314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fe84f0ec23a72b%3A0x775d6cd53cbdad8b!2sPabna%20University%20of%20Science%20and%20Technology!5e1!3m2!1sen!2sbd!4v1734460077385!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+       </div>
+    </div>
+{% endblock %}
+
+{% comment %}
+{% block footer %}
+    {{ block.super }}
+{% endblock %}
+{% endcomment %}

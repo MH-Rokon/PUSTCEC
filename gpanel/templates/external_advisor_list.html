@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>External Advisors</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px;">
+
+    <h1>External Advisors</h1>
+    <div class="card-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
+        {% for member in external_advisors %}
+        <div class="card" style="background-color: white; border-radius: 8px; width: 48%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+            <div class="card-content" style="max-width: 70%;">
+                <h3 style="color: #007bff;">{{ member.first_name }} {{ member.last_name }}</h3>
+                <p><strong>Role:</strong> {{ member.role }}</p>
+                <p><strong>Description:</strong> {{ member.description }}</p>
+                <p><strong>Email:</strong> {{ member.email }}</p>
+                <p><strong>Phone:</strong> {{ member.phone_number }}</p>
+                <div class="social-links">
+                    {% if member.facebook_link %}
+                    <a href="{{ member.facebook_link }}" target="_blank" style="margin: 0 10px; color: #007bff; text-decoration: none;">Facebook</a>
+                    {% endif %}
+                    {% if member.linkedin_link %}
+                    <a href="{{ member.linkedin_link }}" target="_blank" style="margin: 0 10px; color: #007bff; text-decoration: none;">LinkedIn</a>
+                    {% endif %}
+                    {% if member.pustcesf_link %}
+                    <a href="{{ member.pustcesf_link }}" target="_blank" style="margin: 0 10px; color: #007bff; text-decoration: none;">PUSTCESF</a>
+                    {% endif %}
+                </div>
+            </div>
+            <img src="{% if member.profile_image %}{{ member.profile_image.url }}{% else %}https://via.placeholder.com/150{% endif %}" alt="Profile Image" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% block content1 %}
+<!-- In your HTML template -->
+
+
+<!-- Certifications -->
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title d-flex justify-content-between align-items-center">
+            Certifications
+            <a href="{% url 'add_certification' %}" class="btn btn-link p-0">
+                <i class="bi bi-plus-circle fs-4"></i>
+            </a>
+        </h5>
+        {% for certification in profile.certifications.all %}
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h6 class="mb-0">{{ certification.name }}</h6>
+                    <small class="text-muted">{{ certification.issuer }}</small><br>
+                    <small class="text-muted">{{ certification.issue_date|date:"M d, Y" }}</small>
+                </div>
+                <a href="{% url 'edit_certification' certification.id %}" class="btn btn-link p-0">
+                    <i class="bi bi-pencil-square fs-4"></i>
+                </a>
+            </div>
+        {% empty %}
+            <p>No certifications available.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Achievements -->
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title d-flex justify-content-between align-items-center">
+            Achievements
+            <a href="{% url 'add_achievement' %}" class="btn btn-link p-0">
+                <i class="bi bi-plus-circle fs-4"></i>
+            </a>
+        </h5>
+        {% for achievement in profile.achievements.all %}
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h6 class="mb-0">{{ achievement.title }}</h6>
+                    <small class="text-muted">{{ achievement.description }}</small><br>
+                    <small class="text-muted">{{ achievement.date_awarded|date:"M d, Y" }}</small>
+                </div>
+                <a href="{% url 'edit_achievement' achievement.id %}" class="btn btn-link p-0">
+                    <i class="bi bi-pencil-square fs-4"></i>
+                </a>
+            </div>
+        {% empty %}
+            <p>No achievements available.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Awards and Honors -->
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title d-flex justify-content-between align-items-center">
+            Awards and Honors
+            <a href="{% url 'add_award_and_honor' %}" class="btn btn-link p-0">
+                <i class="bi bi-plus-circle fs-4"></i>
+            </a>
+        </h5>
+        {% for award_and_honor in profile.award_and_honor.all %}
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h6 class="mb-0">{{ award_and_honor.title }}</h6>
+                    <small class="text-muted">{{ award_and_honor.description }}</small><br>
+                    <small class="text-muted">{{ award_and_honor.date_awarded|date:"M d, Y" }}</small>
+                </div>
+                <a href="{% url 'edit_award_and_honor' award_and_honor.id %}" class="btn btn-link p-0">
+                    <i class="bi bi-pencil-square fs-4"></i>
+                </a>
+            </div>
+        {% empty %}
+            <p>No awards or honors available.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Publications -->
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title d-flex justify-content-between align-items-center">
+            Publications
+            <a href="{% url 'add_publication' %}" class="btn btn-link p-0">
+                <i class="bi bi-plus-circle fs-4"></i>
+            </a>
+        </h5>
+        {% for publication in profile.publications.all %}
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h6 class="mb-0">{{ publication.title }}</h6>
+                    <small class="text-muted">{{ publication.publisher }}</small><br>
+                    <small class="text-muted">{{ publication.publication_date|date:"M d, Y" }}</small>
+                </div>
+                <a href="{% url 'edit_publication' publication.id %}" class="btn btn-link p-0">
+                    <i class="bi bi-pencil-square fs-4"></i>
+                </a>
+            </div>
+        {% empty %}
+            <p>No publications available.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Volunteer Experience -->
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title d-flex justify-content-between align-items-center">
+            Volunteer Experience
+            <a href="{% url 'add_volunteer_experience' %}" class="btn btn-link p-0">
+                <i class="bi bi-plus-circle fs-4"></i>
+            </a>
+        </h5>
+        {% for volunteer in profile.volunteer_experiences.all %}
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h6 class="mb-0">{{ volunteer.title }}</h6>
+                    <small class="text-muted">{{ volunteer.organization }}</small><br>
+                    <small class="text-muted">{{ volunteer.start_date|date:"M d, Y" }} - {{ volunteer.end_date|date:"M d, Y" }}</small>
+                </div>
+                <a href="{% url 'edit_volunteer_experience' volunteer.id %}" class="btn btn-link p-0">
+                    <i class="bi bi-pencil-square fs-4"></i>
+                </a>
+            </div>
+        {% empty %}
+            <p>No volunteer experiences available.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

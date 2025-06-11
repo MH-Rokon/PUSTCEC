@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}All Events{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="text-center mb-4" style="color: #333; font-weight: bold;">All Events</h2>
+
+        <!-- Upcoming Events Section -->
+        <h3 class="mb-3" style="color: #2980b9; font-weight: bold;">Upcoming Events</h3>
+        <div class="row">
+            {% for event in events.upcoming %}
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="border: none; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out;">
+                        {% if event.image %}
+                            <div style="height: 200px; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa;">
+                                <img src="{{ event.image.url }}" alt="{{ event.title }}" style="max-height: 100%; max-width: 100%; object-fit: cover;">
+                            </div>
+                        {% endif %}
+                        <div class="card-body" style="background-color: #ffffff; padding: 20px;">
+                            <h5 class="card-title" style="font-size: 1.5rem; font-weight: bold; color: #333;">{{ event.title }}</h5>
+                            <p class="card-text" style="font-size: 1rem; color: #6c757d;">{{ event.date }} | {{ event.start_time }} - {{ event.end_time }}</p>
+                            <p class="card-text" style="font-size: 1.1rem; color: #333;">{{ event.description }}</p>
+                            <p class="card-text" style="font-size: 1rem; color: #6c757d;">Venue: {{ event.venue }}</p>
+                            {% if event.organizer %}
+                                <p class="card-text" style="font-size: 1rem; color: #6c757d;">Organizer: {{ event.organizer }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Previous Events Section -->
+        <h3 class="mt-5 mb-3" style="color: #3498db; font-weight: bold;">Previous Events</h3>
+        <div class="row">
+            {% for event in events.previous %}
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="border: none; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out;">
+                        {% if event.image %}
+                            <div style="height: 200px; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa;">
+                                <img src="{{ event.image.url }}" alt="{{ event.title }}" style="max-height: 100%; max-width: 100%; object-fit: cover;">
+                            </div>
+                        {% endif %}
+                        <div class="card-body" style="background-color: #ffffff; padding: 20px;">
+                            <h5 class="card-title" style="font-size: 1.5rem; font-weight: bold; color: #333;">{{ event.title }}</h5>
+                            <p class="card-text" style="font-size: 1rem; color: #6c757d;">{{ event.date }} | {{ event.start_time }} - {{ event.end_time }}</p>
+                            <p class="card-text" style="font-size: 1.1rem; color: #333;">{{ event.description }}</p>
+                            <p class="card-text" style="font-size: 1rem; color: #6c757d;">Venue: {{ event.venue }}</p>
+                            {% if event.organizer %}
+                                <p class="card-text" style="font-size: 1rem; color: #6c757d;">Organizer: {{ event.organizer }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
