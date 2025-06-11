@@ -19,7 +19,7 @@ A full-stack web application developed using Django, HTML, CSS, Bootstrap, and P
 ## Setup Instructions
 
 ```bash
-git clone https://github.com/yourusername/pust-career-club.git
+git clone https://github.com/MH-Rokon/PUSTCEC.git
 cd pust-career-club
 python -m venv env
 source env/bin/activate  # Windows: env\Scripts\activate
